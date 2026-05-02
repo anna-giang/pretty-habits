@@ -2,12 +2,12 @@
 
 Habits in rings.
 
-![Empty](./screenshots/empty.png)
+<img src="./screenshots/not_done.png" alt="Nothing done." width="200"/>
 
-![Nothing done.](./screenshots/not_done.png)
+<img src="./screenshots/part_done.png" alt="Partly done." width="200"/>
 
-![Partly done.](./screenshots/part_done.png)
+<img src="./screenshots/all_done.png" alt="All done." width="200"/>
 
-![All done.](./screenshots/all_done.png)
+<img src="./screenshots/adder.png" alt="Habit adder." width="200"/>
 
-![Habit adder.](./screenshots/adder.png)
+<img src="./screenshots/empty.png" alt="drawing" width="200"/>
