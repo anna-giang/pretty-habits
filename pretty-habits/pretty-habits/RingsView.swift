@@ -134,19 +134,28 @@ struct HabitRingsView: View {
     private let ringWidth: CGFloat = 26
 
     var body: some View {
-        ZStack {
-            ForEach(Array(habits.prefix(5).enumerated()), id: \.element.id) { index, habit in
-                let size = baseSize - CGFloat(index) * ringSpacing
-                PercentageRing(
-                    ringWidth: ringWidth,
-                    percent: habit.completionPercent,
-                    backgroundColor: habit.color.opacity(0.15),
-                    foregroundColors: [habit.color, habit.color.opacity(0.7)]
-                )
-                .frame(width: size, height: size)
-                .animation(.easeInOut(duration: 0.6), value: habit.completionPercent)
+        if (habits.isEmpty) {
+            ContentUnavailableView(
+                "No habits yet",
+                systemImage: "circle.dashed",
+                description: Text("Tap + to add your first habit.")
+            )
+            .padding(.top, 60)
+        } else {
+            ZStack {
+                ForEach(Array(habits.prefix(5).enumerated()), id: \.element.id) { index, habit in
+                    let size = baseSize - CGFloat(index) * ringSpacing
+                    PercentageRing(
+                        ringWidth: ringWidth,
+                        percent: habit.completionPercent,
+                        backgroundColor: habit.color.opacity(0.15),
+                        foregroundColors: [habit.color, habit.color.opacity(0.7)]
+                    )
+                    .frame(width: size, height: size)
+                    .animation(.easeInOut(duration: 0.6), value: habit.completionPercent)
+                }
             }
+            .frame(height: baseSize + ringWidth)
         }
-        .frame(height: baseSize + ringWidth)
     }
 }

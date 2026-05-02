@@ -1,9 +1,9 @@
+import SwiftData
 //
 //  ContentView.swift
 //  pretty-habits
 //
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
@@ -14,40 +14,30 @@ struct ContentView: View {
     @State private var showMarkDoneAlert = false
     @State private var showMarkUndoneAlert = false
 
+    let MAX_HABITS = 5
+
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 32) {
-
-                    // ── Rings ──────────────────────────────────────────────
-                    if habits.isEmpty {
-                        ContentUnavailableView(
-                            "No habits yet",
-                            systemImage: "circle.dashed",
-                            description: Text("Tap + to add your first habit.")
-                        )
-                        .padding(.top, 60)
-                    } else {
-                        HabitRingsView(habits: Array(habits.prefix(5)))
-                            .padding(.top, 24)
-                    }
-
-                    // ── Habit list ─────────────────────────────────────────
-                    VStack(spacing: 12) {
-                        ForEach(Array(habits.prefix(5))) { habit in
-                            HabitRowButton(habit: habit) {
-                                selectedHabit = habit
-                                if habit.isDoneToday {
-                                    selectedHabit?.unmarkToday()
-                                } else {
-                                    selectedHabit?.markDoneToday()
-                                }
+            List {
+                Section(
+                    // Rings.
+                    header: HabitRingsView(habits: Array(habits.prefix(5)))
+                        .padding(.vertical, 16)
+                        .frame(maxWidth: .infinity)
+                ) {
+                    // Habit List.
+                    ForEach(habits) { habit in
+                        HabitRowButton(habit: habit) {
+                            selectedHabit = habit
+                            if habit.isDoneToday {
+                                selectedHabit?.unmarkToday()
+                            } else {
+                                selectedHabit?.markDoneToday()
                             }
                         }
                     }
-                    .padding(.horizontal)
+                    .onDelete(perform: deleteHabit)
                 }
-                .padding(.bottom, 32)
             }
             .navigationTitle("Habits")
             .toolbar {
@@ -56,7 +46,7 @@ struct ContentView: View {
                         showAddSheet = true
                     } label: {
                         Image(systemName: "plus")
-                    }.disabled(habits.count >= 5)
+                    }.disabled(habits.count >= MAX_HABITS)
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
@@ -67,6 +57,14 @@ struct ContentView: View {
                 AddHabitView { newHabit in
                     modelContext.insert(newHabit)
                 }
+            }
+        }
+    }
+
+    private func deleteHabit(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                modelContext.delete(habits[index])
             }
         }
     }
@@ -110,9 +108,11 @@ struct HabitRowButton: View {
             .padding(.vertical, 14)
             .background(
                 RoundedRectangle(cornerRadius: 14)
-                    .fill(habit.isDoneToday
-                          ? Color(.systemGray5)
-                          : habit.color.opacity(0.1))
+                    .fill(
+                        habit.isDoneToday
+                            ? Color(.systemGray5)
+                            : habit.color.opacity(0.1)
+                    )
             )
         }
         .buttonStyle(.plain)

@@ -2,7 +2,6 @@
 
 ## TODOs
 
-- [ ] Support deletion of habits
 - [ ] Support retrospective logging/unlogging of habits
 - [ ] Support editing of habits (e.g. change time span)
 - [ ] Support reordering of habits by long press and drag. The rings should animate reorder as well
@@ -10,3 +9,5 @@
 - [ ] iOS home screen widget
 - [ ] Support more colours, with custom colour picker.
 - [ ] App logo
+- [ ] Delete confirmation to prevent accidental deletion
+- [X] Support deletion of habits
