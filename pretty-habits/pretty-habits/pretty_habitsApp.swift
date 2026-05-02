@@ -1,8 +1,6 @@
 //
 //  pretty_habitsApp.swift
-//  pretty-habits
-//
-//  Created by Anna Giang on 1/5/2026.
+//  pretty-habits entry point.
 //
 
 import SwiftUI
@@ -12,7 +10,7 @@ import SwiftData
 struct pretty_habitsApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            HabitEntry.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
