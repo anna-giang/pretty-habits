@@ -11,7 +11,7 @@ extension Color {
 
         var rgb: UInt64 = 0
         if (!Scanner(string: hexSanitized).scanHexInt64(&rgb)) {
-            rgb = 1234567 // TODO: better random colour.
+            rgb = 0xADD8E6 // Pastel blue default if the color doesn't parse.
         }
 
         let r = Double((rgb & 0xFF0000) >> 16) / 255
