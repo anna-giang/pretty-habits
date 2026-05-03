@@ -91,18 +91,25 @@ struct HabitRowButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 14) {
-                // Colour dot (grayscale when done today)
+                // Colour dot
                 Circle()
-                    .fill(habit.isDoneToday ? Color.gray : habit.color)
+                    .fill(
+                        shouldGreyOutHabit(habit: habit)
+                            ? Color.gray : habit.color
+                    )
                     .frame(width: 14, height: 14)
 
                 // Habit name and date range
                 VStack(alignment: HorizontalAlignment.leading, spacing: 8) {
-                    Text(habit.habitName)
-                        .font(.body)
-                        .foregroundStyle(
-                            habit.isDoneToday ? .secondary : .primary
-                        )
+                    Text(
+                        habitIsExpired(habit: habit)
+                            ? "(Ended) \(habit.habitName)" : habit.habitName
+                    )
+                    .font(.body)
+                    .foregroundStyle(
+                        shouldGreyOutHabit(habit: habit)
+                            ? .secondary : .primary
+                    )
 
                     Text(
                         habit.startDate.formatted(date: .long, time: .omitted)
@@ -129,7 +136,10 @@ struct HabitRowButton: View {
                         .foregroundStyle(Color.gray)
                 } else {
                     Image(systemName: "circle")
-                        .foregroundStyle(habit.color.opacity(0.5))
+                        .foregroundStyle(
+                            shouldGreyOutHabit(habit: habit)
+                                ? Color.gray : habit.color.opacity(0.5)
+                        )
                 }
             }
             .padding(.horizontal, 16)
@@ -137,15 +147,27 @@ struct HabitRowButton: View {
             .background(
                 RoundedRectangle(cornerRadius: 14)
                     .fill(
-                        habit.isDoneToday
+                        shouldGreyOutHabit(habit: habit)
                             ? Color(.systemGray5)
                             : habit.color.opacity(0.1)
                     )
             )
         }
+        .disabled(habitIsExpired(habit: habit))
         .buttonStyle(.plain)
         .animation(.easeInOut(duration: 0.25), value: habit.isDoneToday)
     }
+
+    private func shouldGreyOutHabit(habit: HabitEntry) -> Bool {
+        habit.isDoneToday
+            || habitIsExpired(habit: habit)
+    }
+
+    private func habitIsExpired(habit: HabitEntry) -> Bool {
+        Calendar.current.startOfDay(for: habit.endDate)
+            < Calendar.current.startOfDay(for: .now)
+    }
+
 }
 
 #Preview {

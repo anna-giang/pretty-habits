@@ -8,7 +8,7 @@
 - [X] Support expected frequency of completion within a time period. e.g. user can specify 5 times a month. Then, the ring will progress 20% each day they mark the habit as done.
 - [ ] iOS home screen widget
 - [ ] Support editing of habits (e.g. change time span)
-- [ ] Grey out 'expired habits' to indicate they can be archived
+- [X] Grey out 'expired habits' to indicate they can be archived
 - [X] Support deletion of habits
 - [ ] Test data
 

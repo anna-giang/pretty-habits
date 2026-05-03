@@ -24,7 +24,11 @@ struct RingShape: Shape {
         set { percent = newValue }
     }
 
-    init(percent: Double = 100, startAngle: Double = -90, drawnClockwise: Bool = false) {
+    init(
+        percent: Double = 100,
+        startAngle: Double = -90,
+        drawnClockwise: Bool = false
+    ) {
         self.percent = percent
         self.startAngle = startAngle
         self.drawnClockwise = drawnClockwise
@@ -33,11 +37,20 @@ struct RingShape: Shape {
     func path(in rect: CGRect) -> Path {
         let radius = min(rect.width, rect.height) / 2
         let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
-        let endAngle = Angle(degrees: RingShape.percentToAngle(percent: percent, startAngle: startAngle))
+        let endAngle = Angle(
+            degrees: RingShape.percentToAngle(
+                percent: percent,
+                startAngle: startAngle
+            )
+        )
         return Path { path in
-            path.addArc(center: center, radius: radius,
-                        startAngle: Angle(degrees: startAngle),
-                        endAngle: endAngle, clockwise: drawnClockwise)
+            path.addArc(
+                center: center,
+                radius: radius,
+                startAngle: Angle(degrees: startAngle),
+                endAngle: endAngle,
+                clockwise: drawnClockwise
+            )
         }
     }
 }
@@ -82,18 +95,27 @@ struct PercentageRing: View {
                     .stroke(style: StrokeStyle(lineWidth: ringWidth))
                     .fill(backgroundColor)
                 RingShape(percent: percent, startAngle: startAngle)
-                    .stroke(style: StrokeStyle(lineWidth: ringWidth, lineCap: .round))
+                    .stroke(
+                        style: StrokeStyle(
+                            lineWidth: ringWidth,
+                            lineCap: .round
+                        )
+                    )
                     .fill(ringGradient)
                 if getShowShadow(frame: geometry.size) {
                     Circle()
                         .fill(lastGradientColor)
                         .frame(width: ringWidth, height: ringWidth)
-                        .offset(x: getEndCircleLocation(frame: geometry.size).0,
-                                y: getEndCircleLocation(frame: geometry.size).1)
-                        .shadow(color: PercentageRing.ShadowColor,
-                                radius: PercentageRing.ShadowRadius,
-                                x: getEndCircleShadowOffset().0,
-                                y: getEndCircleShadowOffset().1)
+                        .offset(
+                            x: getEndCircleLocation(frame: geometry.size).0,
+                            y: getEndCircleLocation(frame: geometry.size).1
+                        )
+                        .shadow(
+                            color: PercentageRing.ShadowColor,
+                            radius: PercentageRing.ShadowRadius,
+                            x: getEndCircleShadowOffset().0,
+                            y: getEndCircleShadowOffset().1
+                        )
                 }
             }
         }
@@ -119,7 +141,8 @@ struct PercentageRing: View {
 
     private func getShowShadow(frame: CGSize) -> Bool {
         let circleRadius = min(frame.width, frame.height) / 2
-        let remainingAngle = (360 - absolutePercentageAngle).toRadians().toCGFloat()
+        let remainingAngle = (360 - absolutePercentageAngle).toRadians()
+            .toCGFloat()
         return percent >= 100 || circleRadius * remainingAngle <= ringWidth
     }
 }
@@ -130,11 +153,11 @@ struct HabitRingsView: View {
 
     // Ring sizing: outermost ring is largest
     private let baseSize: CGFloat = 260
-    private let ringSpacing: CGFloat = 36   // gap between ring centres
+    private let ringSpacing: CGFloat = 36  // gap between ring centres
     private let ringWidth: CGFloat = 26
 
     var body: some View {
-        if (habits.isEmpty) {
+        if habits.isEmpty {
             ContentUnavailableView(
                 "No habits yet",
                 systemImage: "circle.dashed",
@@ -143,16 +166,33 @@ struct HabitRingsView: View {
             .padding(.top, 60)
         } else {
             ZStack {
-                ForEach(Array(habits.prefix(5).enumerated()), id: \.element.id) { index, habit in
+                ForEach(Array(habits.enumerated()), id: \.element.id) {
+                    index,
+                    habit in
                     let size = baseSize - CGFloat(index) * ringSpacing
+
+                    let habitIsExpired =
+                        Calendar.current.startOfDay(for: habit.endDate)
+                        < Calendar.current.startOfDay(for: .now)
+                    let backgroundColor =
+                        habitIsExpired
+                        ? Color.gray.opacity(0.15) : habit.color.opacity(0.15)
+                    let foregroundColors =
+                        habitIsExpired
+                        ? [Color.gray, Color.gray.opacity(0.7)]
+                        : [habit.color, habit.color.opacity(0.7)]
+
                     PercentageRing(
                         ringWidth: ringWidth,
                         percent: habit.completionPercent,
-                        backgroundColor: habit.color.opacity(0.15),
-                        foregroundColors: [habit.color, habit.color.opacity(0.7)]
+                        backgroundColor: backgroundColor,
+                        foregroundColors: foregroundColors
                     )
                     .frame(width: size, height: size)
-                    .animation(.easeInOut(duration: 0.6), value: habit.completionPercent)
+                    .animation(
+                        .easeInOut(duration: 0.6),
+                        value: habit.completionPercent
+                    )
                 }
             }
             .frame(height: baseSize + ringWidth)
