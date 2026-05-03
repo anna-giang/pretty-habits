@@ -3,8 +3,8 @@
 //  pretty-habits entry point.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct pretty_habitsApp: App {
@@ -12,10 +12,16 @@ struct pretty_habitsApp: App {
         let schema = Schema([
             HabitEntry.self
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let modelConfiguration = ModelConfiguration(
+            schema: schema,
+            isStoredInMemoryOnly: false
+        )
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(
+                for: schema,
+                configurations: [modelConfiguration]
+            )
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }

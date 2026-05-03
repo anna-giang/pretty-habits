@@ -1,21 +1,28 @@
+import SwiftData
 //
 //  HabitEntry.swift
 //  pretty-habits
 //
 import SwiftUI
-import SwiftData
 
 @Model
 final class HabitEntry {
     var habitName: String
-    var colorHex: String        // store color as hex string
+    var colorHex: String  // store color as hex string
     var startDate: Date
     var endDate: Date
     var completedDates: [Date]  // dates marked as done
     var targetDays: Int
     var sortOrder: Int
 
-    init(habitName: String, colorHex: String, startDate: Date, endDate: Date, targetDays: Int, sortOrder: Int) {
+    init(
+        habitName: String,
+        colorHex: String,
+        startDate: Date,
+        endDate: Date,
+        targetDays: Int,
+        sortOrder: Int
+    ) {
         self.habitName = habitName
         self.colorHex = colorHex
         self.startDate = startDate
