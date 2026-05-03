@@ -6,14 +6,65 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8B37DBC82FA71C0700901680 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B37DBC72FA71C0700901680 /* WidgetKit.framework */; };
+		8B37DBCA2FA71C0700901680 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B37DBC92FA71C0700901680 /* SwiftUI.framework */; };
+		8B37DBD92FA71C0800901680 /* pretty-habits-widget-extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8B37DBC52FA71C0700901680 /* pretty-habits-widget-extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8B37DBD72FA71C0800901680 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B37DB5A2FA4B7E500901680 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B37DBC42FA71C0700901680;
+			remoteInfo = PrettyHabitsWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8B37DBDE2FA71C0800901680 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8B37DBD92FA71C0800901680 /* pretty-habits-widget-extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		8B37DB622FA4B7E600901680 /* pretty-habits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pretty-habits.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B37DBC52FA71C0700901680 /* pretty-habits-widget-extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "pretty-habits-widget-extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B37DBC72FA71C0700901680 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8B37DBC92FA71C0700901680 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8B37DBDA2FA71C0800901680 /* Exceptions for "pretty-habits-widget" folder in "pretty-habits-widget-extension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8B37DBC42FA71C0700901680 /* pretty-habits-widget-extension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8B37DB642FA4B7E600901680 /* pretty-habits */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "pretty-habits";
+			sourceTree = "<group>";
+		};
+		8B37DBCB2FA71C0700901680 /* pretty-habits-widget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8B37DBDA2FA71C0800901680 /* Exceptions for "pretty-habits-widget" folder in "pretty-habits-widget-extension" target */,
+			);
+			path = "pretty-habits-widget";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +77,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B37DBC22FA71C0700901680 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B37DBCA2FA71C0700901680 /* SwiftUI.framework in Frameworks */,
+				8B37DBC82FA71C0700901680 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				8B37DB642FA4B7E600901680 /* pretty-habits */,
+				8B37DBCB2FA71C0700901680 /* pretty-habits-widget */,
+				8B37DBC62FA71C0700901680 /* Frameworks */,
 				8B37DB632FA4B7E600901680 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +103,18 @@
 			isa = PBXGroup;
 			children = (
 				8B37DB622FA4B7E600901680 /* pretty-habits.app */,
+				8B37DBC52FA71C0700901680 /* pretty-habits-widget-extension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8B37DBC62FA71C0700901680 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B37DBC72FA71C0700901680 /* WidgetKit.framework */,
+				8B37DBC92FA71C0700901680 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +127,12 @@
 				8B37DB5E2FA4B7E500901680 /* Sources */,
 				8B37DB5F2FA4B7E500901680 /* Frameworks */,
 				8B37DB602FA4B7E500901680 /* Resources */,
+				8B37DBDE2FA71C0800901680 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8B37DBD82FA71C0800901680 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				8B37DB642FA4B7E600901680 /* pretty-habits */,
@@ -69,6 +143,28 @@
 			productName = "pretty-habits";
 			productReference = 8B37DB622FA4B7E600901680 /* pretty-habits.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8B37DBC42FA71C0700901680 /* pretty-habits-widget-extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B37DBDB2FA71C0800901680 /* Build configuration list for PBXNativeTarget "pretty-habits-widget-extension" */;
+			buildPhases = (
+				8B37DBC12FA71C0700901680 /* Sources */,
+				8B37DBC22FA71C0700901680 /* Frameworks */,
+				8B37DBC32FA71C0700901680 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8B37DBCB2FA71C0700901680 /* pretty-habits-widget */,
+			);
+			name = "pretty-habits-widget-extension";
+			packageProductDependencies = (
+			);
+			productName = PrettyHabitsWidgetExtension;
+			productReference = 8B37DBC52FA71C0700901680 /* pretty-habits-widget-extension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +177,9 @@
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					8B37DB612FA4B7E500901680 = {
+						CreatedOnToolsVersion = 26.4.1;
+					};
+					8B37DBC42FA71C0700901680 = {
 						CreatedOnToolsVersion = 26.4.1;
 					};
 				};
@@ -100,12 +199,20 @@
 			projectRoot = "";
 			targets = (
 				8B37DB612FA4B7E500901680 /* pretty-habits */,
+				8B37DBC42FA71C0700901680 /* pretty-habits-widget-extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8B37DB602FA4B7E500901680 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B37DBC32FA71C0700901680 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +229,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B37DBC12FA71C0700901680 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8B37DBD82FA71C0800901680 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B37DBC42FA71C0700901680 /* pretty-habits-widget-extension */;
+			targetProxy = 8B37DBD72FA71C0800901680 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8B37DB6D2FA4B7E600901680 /* Debug */ = {
@@ -249,8 +371,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "pretty-habits/pretty-habits.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 259K9436LG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -280,8 +404,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "pretty-habits/pretty-habits.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 259K9436LG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -306,6 +432,66 @@
 			};
 			name = Release;
 		};
+		8B37DBDC2FA71C0800901680 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 259K9436LG;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PrettyHabitsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PrettyHabitsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "annagiang.pretty-habits.pretty-habits-widget-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8B37DBDD2FA71C0800901680 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 259K9436LG;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PrettyHabitsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PrettyHabitsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "annagiang.pretty-habits.pretty-habits-widget-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -323,6 +509,15 @@
 			buildConfigurations = (
 				8B37DB702FA4B7E600901680 /* Debug */,
 				8B37DB712FA4B7E600901680 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B37DBDB2FA71C0800901680 /* Build configuration list for PBXNativeTarget "pretty-habits-widget-extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B37DBDC2FA71C0800901680 /* Debug */,
+				8B37DBDD2FA71C0800901680 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
