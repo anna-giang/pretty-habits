@@ -1,9 +1,7 @@
 //
 //  HabitRowButton.swift
 //  pretty-habits
-//
-//  Created by Anna Giang on 3/5/2026.
-//
+
 import SwiftUI
 
 struct HabitRowButton: View {

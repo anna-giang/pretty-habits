@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var selectedHabit: HabitEntry? = nil
     @State private var showMarkDoneAlert = false
     @State private var showMarkUndoneAlert = false
+    @State private var habitToEdit: HabitEntry? = nil
 
     let MAX_HABITS = 5
 
@@ -26,7 +27,7 @@ struct ContentView: View {
                         .padding(.vertical, 16)
                         .frame(maxWidth: .infinity)
                 ) {
-                    // Habit List.s
+                    // Habit List.
                     ForEach(orderedHabits) { habit in
                         HabitRowButton(habit: habit) {
                             selectedHabit = habit
@@ -35,6 +36,14 @@ struct ContentView: View {
                             } else {
                                 selectedHabit?.markDoneToday()
                             }
+                        }
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            Button {
+                                habitToEdit = habit
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            .tint(habit.color)
                         }
                     }
                     .onDelete(perform: deleteHabit)
@@ -58,6 +67,10 @@ struct ContentView: View {
                 AddHabitView(habitCount: orderedHabits.count) { newHabit in
                     modelContext.insert(newHabit)
                 }
+            }
+            // ── Edit habit sheet ────────────────────────────────────────────
+            .sheet(item: $habitToEdit) { habit in
+                EditHabitView(habit: habit)
             }
         }.onAppear {
             orderedHabits = habits
