@@ -21,6 +21,11 @@ struct AddHabitView: View {
         Calendar.current.dateComponents([.day], from: startDate, to: endDate)
             .day ?? 1
     }
+    
+    // End date must be after start date.
+    private var minEndDate: Date {
+        Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
+    }
 
     private let presetColors: [(String, String)] = [
         ("Coral", "FF6B6B"),
@@ -45,6 +50,7 @@ struct AddHabitView: View {
                     DatePicker(
                         "End",
                         selection: $endDate,
+                        in: minEndDate...,
                         displayedComponents: .date
                     )
                 }
@@ -87,7 +93,7 @@ struct AddHabitView: View {
     private var targetDaysPicker: some View {
         Picker("Target days", selection: $targetDays) {
             ForEach(1...max(1, maxTargetDays), id: \.self) { day in
-                Text("\(day) days").tag(day)
+                Text("^[\(day) day](inflect: true)").tag(day)
             }
         }
         .pickerStyle(.wheel)
