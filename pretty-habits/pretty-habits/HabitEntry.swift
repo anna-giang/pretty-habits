@@ -12,24 +12,20 @@ final class HabitEntry {
     var startDate: Date
     var endDate: Date
     var completedDates: [Date]  // dates marked as done
+    var targetDays: Int
 
-    init(habitName: String, colorHex: String, startDate: Date, endDate: Date) {
+    init(habitName: String, colorHex: String, startDate: Date, endDate: Date, targetDays: Int) {
         self.habitName = habitName
         self.colorHex = colorHex
         self.startDate = startDate
         self.endDate = endDate
         self.completedDates = []
+        self.targetDays = targetDays
     }
 
-    /// Total number of days in the habit window
-    var totalDays: Int {
-        let days = Calendar.current.dateComponents([.day], from: startDate, to: endDate).day ?? 0
-        return max(days, 1)
-    }
-
-    /// Completion percentage (0–100)
+    /// Completion percentage (0–100), calculated as number of days completed divided by target days
     var completionPercent: Double {
-        min(Double(completedDates.count) / Double(totalDays) * 100, 100)
+        min(Double(completedDates.count) / Double(targetDays) * 100, 100)
     }
 
     /// Whether today is already marked done
