@@ -1,6 +1,6 @@
 # Pretty Habits
 
-Habits in rings.
+Habits in rings. See upcoming features [here](PRD.md) - checked off TODOs have been implemented!
 
 <img src="./screenshots/not_done.png" alt="Nothing done." width="200"/>
 
