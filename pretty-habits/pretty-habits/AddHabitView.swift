@@ -6,6 +6,7 @@ import SwiftUI
 
 struct AddHabitView: View {
     @Environment(\.dismiss) private var dismiss
+    let habitCount: Int
     var onAdd: (HabitEntry) -> Void
 
     @State private var name: String = ""
@@ -15,16 +16,17 @@ struct AddHabitView: View {
         Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date()
     @State private var selectedColorHex: String = "FF6B6B"
     @State private var targetDays: Int = 0
-    
+
     // Max target days will be the number of days between the specified calendar dates.
     private var maxTargetDays: Int {
         Calendar.current.dateComponents([.day], from: startDate, to: endDate)
             .day ?? 1
     }
-    
+
     // End date must be after start date.
     private var minEndDate: Date {
-        Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
+        Calendar.current.date(byAdding: .day, value: 1, to: startDate)
+            ?? startDate
     }
 
     private let presetColors: [(String, String)] = [
@@ -79,7 +81,8 @@ struct AddHabitView: View {
                             colorHex: selectedColorHex,
                             startDate: startDate,
                             endDate: endDate,
-                            targetDays: targetDays
+                            targetDays: targetDays,
+                            sortOrder: habitCount  // Default newly added habits to the bottom of the list.
                         )
                         onAdd(entry)
                         dismiss()

@@ -13,14 +13,16 @@ final class HabitEntry {
     var endDate: Date
     var completedDates: [Date]  // dates marked as done
     var targetDays: Int
+    var sortOrder: Int
 
-    init(habitName: String, colorHex: String, startDate: Date, endDate: Date, targetDays: Int) {
+    init(habitName: String, colorHex: String, startDate: Date, endDate: Date, targetDays: Int, sortOrder: Int) {
         self.habitName = habitName
         self.colorHex = colorHex
         self.startDate = startDate
         self.endDate = endDate
         self.completedDates = []
         self.targetDays = targetDays
+        self.sortOrder = sortOrder
     }
 
     /// Completion percentage (0–100), calculated as number of days completed divided by target days
