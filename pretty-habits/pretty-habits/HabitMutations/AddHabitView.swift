@@ -17,26 +17,6 @@ struct AddHabitView: View {
     @State private var selectedColorHex: String = "FF6B6B"
     @State private var targetDays: Int = 0
 
-    // Max target days will be the number of days between the specified calendar dates.
-    private var maxTargetDays: Int {
-        Calendar.current.dateComponents([.day], from: startDate, to: endDate)
-            .day ?? 1
-    }
-
-    // End date must be after start date.
-    private var minEndDate: Date {
-        Calendar.current.date(byAdding: .day, value: 1, to: startDate)
-            ?? startDate
-    }
-
-    private let presetColors: [(String, String)] = [
-        ("Coral", "FF6B6B"),
-        ("Sky", "4ECDC4"),
-        ("Gold", "FFD93D"),
-        ("Lavender", "A78BFA"),
-        ("Mint", "6BCB77"),
-    ]
-
     var body: some View {
         NavigationStack {
             Form {
@@ -52,12 +32,12 @@ struct AddHabitView: View {
                     DatePicker(
                         "End",
                         selection: $endDate,
-                        in: minEndDate...,
+                        in: HabitForm.minEndDate(from: startDate)...,
                         displayedComponents: .date
                     )
                 }
                 Section("Target days") {
-                    targetDaysPicker
+                    targetDaysPicker()
                 }
                 Section("Colour") {
                     HStack(spacing: 16) {
@@ -93,8 +73,9 @@ struct AddHabitView: View {
         }
     }
 
-    private var targetDaysPicker: some View {
-        Picker("Target days", selection: $targetDays) {
+    private func targetDaysPicker() -> some View {
+        let maxTargetDays = HabitForm.maxTarget(from: startDate, to: endDate)
+        return Picker("Target days", selection: $targetDays) {
             ForEach(1...max(1, maxTargetDays), id: \.self) { day in
                 Text("^[\(day) day](inflect: true)").tag(day)
             }
@@ -109,7 +90,7 @@ struct AddHabitView: View {
     }
 
     private var colorCircles: some View {
-        ForEach(presetColors, id: \.1) { label, hex in
+        ForEach(HabitForm.presetColors, id: \.1) { label, hex in
             Circle()
                 .fill(Color(hex: hex))
                 .frame(width: 36, height: 36)
