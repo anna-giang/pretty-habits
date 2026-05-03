@@ -6,15 +6,14 @@
 
 - [X] Show start date and end date of habit on the card.
 - [X] Support expected frequency of completion within a time period. e.g. user can specify 5 times a month. Then, the ring will progress 20% each day they mark the habit as done.
-- [ ] iOS home screen widget
-- [ ] Support editing of habits (e.g. change time span)
+- [X] Support editing of habits (e.g. change time span)
 - [X] Grey out 'expired habits' to indicate they can be archived
 - [X] Support deletion of habits
-- [ ] Test data
-
-### Functional nice-to-haves (P2)
-
 - [ ] Support retrospective logging/unlogging of habits
+- [ ] iOS home screen widget
+
+### Functional nice-to-haves (P1)
+
 - [ ] Overall stats (average habit completion rate)
 - [ ] Habit archive view with the overall stats
 - [ ] Delete confirmation to prevent accidental deletion
