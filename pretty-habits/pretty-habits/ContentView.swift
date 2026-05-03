@@ -83,15 +83,30 @@ struct HabitRowButton: View {
                     .fill(habit.isDoneToday ? Color.gray : habit.color)
                     .frame(width: 14, height: 14)
 
-                // Name
-                Text(habit.habitName)
-                    .font(.body)
-                    .foregroundStyle(habit.isDoneToday ? .secondary : .primary)
+                // Habit name and date range
+                VStack(alignment: HorizontalAlignment.leading, spacing: 8) {
+                    Text(habit.habitName)
+                        .font(.body)
+                        .foregroundStyle(
+                            habit.isDoneToday ? .secondary : .primary
+                        )
+
+                    Text(
+                        habit.startDate.formatted(date: .long, time: .omitted)
+                            + " - "
+                            + habit.endDate.formatted(
+                                date: .long,
+                                time: .omitted
+                            )
+                    )
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                }
 
                 Spacer()
 
-                // Progress label
-                Text("\(Int(habit.completionPercent))%")
+                // Progress label, in the format x/x days completed.
+                Text("\(habit.completedDates.count)/\(habit.targetDays) days")
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
