@@ -441,7 +441,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 259K9436LG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PrettyHabitsWidget/Info.plist;
+				INFOPLIST_FILE = "pretty-habits-widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PrettyHabitsWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -471,7 +471,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 259K9436LG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PrettyHabitsWidget/Info.plist;
+				INFOPLIST_FILE = "pretty-habits-widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = PrettyHabitsWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
