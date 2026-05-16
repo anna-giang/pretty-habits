@@ -2,83 +2,50 @@
 //  PrettyHabitsWidget.swift
 //  PrettyHabitsWidget
 //
-//  Created by Anna Giang on 3/5/2026.
-//
-
 import WidgetKit
 import SwiftUI
 
-struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+// MARK: - Timeline Entry
+struct HabitEntry: TimelineEntry {
+    let date: Date
+    let habits: [SharedHabit]
+}
+
+// MARK: - Provider
+struct HabitProvider: TimelineProvider {
+    func placeholder(in context: Context) -> HabitEntry {
+        HabitEntry(date: Date(), habits: [
+            SharedHabit(id: UUID(), habitName: "Habit 1", colorHex: "FF6B6B", startDate: Date(), endDate: Date(), completedDates: [], targetDays: 7, sortOrder: 1),
+            SharedHabit(id: UUID(), habitName: "Habit 2", colorHex: "4ECDC4", startDate: Date(), endDate: Date(), completedDates: [], targetDays: 7, sortOrder: 2),
+            SharedHabit(id: UUID(), habitName: "Habit 3", colorHex: "FFD93D", startDate: Date(), endDate: Date(), completedDates: [], targetDays: 7, sortOrder: 3),
+        ])
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
-        completion(entry)
+    func getSnapshot(in context: Context, completion: @escaping (HabitEntry) -> Void) {
+        completion(HabitEntry(date: Date(), habits: SharedHabitStore.load()))
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+    func getTimeline(in context: Context, completion: @escaping (Timeline<HabitEntry>) -> Void) {
+        let entry = HabitEntry(date: Date(), habits: SharedHabitStore.load())
+        // Refresh at midnight so completion percentages stay current
+        let midnight = Calendar.current.startOfDay(for: Date().addingTimeInterval(86400))
+        let timeline = Timeline(entries: [entry], policy: .after(midnight))
         completion(timeline)
     }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
 }
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let emoji: String
-}
-
-struct PrettyHabitsWidgetEntryView : View {
-    var entry: Provider.Entry
-
-    var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
-        }
-    }
-}
-
+// MARK: - Widget
+@main
 struct PrettyHabitsWidget: Widget {
     let kind: String = "PrettyHabitsWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
-                PrettyHabitsWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
-            } else {
-                PrettyHabitsWidgetEntryView(entry: entry)
-                    .padding()
-                    .background()
-            }
+        StaticConfiguration(kind: kind, provider: HabitProvider()) { entry in
+            PrettyHabitsWidgetView(entry: entry)
+                .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Habit Rings")
+        .description("Your habit progress at a glance.")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
-}
-
-#Preview(as: .systemSmall) {
-    PrettyHabitsWidget()
-} timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
 }

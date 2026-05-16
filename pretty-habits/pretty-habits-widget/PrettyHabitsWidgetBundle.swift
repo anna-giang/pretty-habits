@@ -8,7 +8,6 @@
 import WidgetKit
 import SwiftUI
 
-@main
 struct PrettyHabitsWidgetBundle: WidgetBundle {
     var body: some Widget {
         PrettyHabitsWidget()
