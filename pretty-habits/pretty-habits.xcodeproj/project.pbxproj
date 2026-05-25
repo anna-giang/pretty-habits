@@ -37,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B0276EB2FC31DA700FDA6A2 /* pretty-habits-widget-extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pretty-habits-widget-extension.entitlements"; sourceTree = "<group>"; };
 		8B37DB622FA4B7E600901680 /* pretty-habits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pretty-habits.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B37DBC52FA71C0700901680 /* pretty-habits-widget-extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "pretty-habits-widget-extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B37DBC72FA71C0700901680 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -92,6 +93,7 @@
 		8B37DB592FA4B7E500901680 = {
 			isa = PBXGroup;
 			children = (
+				8B0276EB2FC31DA700FDA6A2 /* pretty-habits-widget-extension.entitlements */,
 				8B37DB642FA4B7E600901680 /* pretty-habits */,
 				8B37DBCB2FA71C0700901680 /* pretty-habits-widget */,
 				8B37DBC62FA71C0700901680 /* Frameworks */,
@@ -437,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "pretty-habits-widget-extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 259K9436LG;
@@ -467,6 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "pretty-habits-widget-extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 259K9436LG;
