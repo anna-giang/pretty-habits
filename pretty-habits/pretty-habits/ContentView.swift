@@ -37,6 +37,7 @@ struct ContentView: View {
                             } else {
                                 selectedHabit?.markDoneToday()
                             }
+                            syncToWidget()
                         }
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
                             Button {
@@ -96,6 +97,7 @@ struct ContentView: View {
                 habit.sortOrder = newIndex
             }
         }
+        syncToWidget()
     }
     
     private func syncToWidget() {
