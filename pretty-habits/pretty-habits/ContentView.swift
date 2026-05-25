@@ -4,6 +4,7 @@ import SwiftData
 //  pretty-habits
 //
 import SwiftUI
+import WidgetKit
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
@@ -36,6 +37,7 @@ struct ContentView: View {
                             } else {
                                 selectedHabit?.markDoneToday()
                             }
+                            syncToWidget()
                         }
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
                             Button {
@@ -74,9 +76,11 @@ struct ContentView: View {
             }
         }.onAppear {
             orderedHabits = habits
+            syncToWidget()
         }.onChange(of: habits.map(\.id)) {
             // Only sync when items are added or deleted.
             orderedHabits = habits
+            syncToWidget()
         }
     }
 
@@ -93,6 +97,26 @@ struct ContentView: View {
                 habit.sortOrder = newIndex
             }
         }
+        syncToWidget()
+    }
+    
+    private func syncToWidget() {
+        let shared = habits.map { habit in
+            SharedHabit(
+                id: habit.id,
+                habitName: habit.habitName,
+                colorHex: habit.colorHex,
+                startDate: habit.startDate,
+                endDate: habit.endDate,
+                completedDates: habit.completedDates,
+                targetDays: habit.targetDays,
+                sortOrder: habit.sortOrder,
+            )
+        }
+        SharedHabitStore.save(Array(shared))
+
+        // Tell WidgetKit to reload
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 

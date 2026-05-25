@@ -7,6 +7,7 @@ import SwiftUI
 
 @Model
 final class HabitEntry {
+    var id = UUID()
     var habitName: String
     var colorHex: String  // store color as hex string
     var startDate: Date
