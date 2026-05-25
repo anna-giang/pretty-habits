@@ -10,16 +10,13 @@ struct PrettyHabitsWidgetView: View {
     @Environment(\.widgetFamily) var family
 
     var body: some View {
-        // Tapping anywhere opens the app
-        Link(destination: URL(string: "prettyhabits://open")!) {
-            switch family {
-            case .systemSmall:
-                SmallWidgetView(habits: entry.habits)
-            case .systemMedium:
-                MediumWidgetView(habits: entry.habits)
-            default:
-                SmallWidgetView(habits: entry.habits)
-            }
+        switch family {
+        case .systemSmall:
+            SmallWidgetView(habits: entry.habits)
+        case .systemMedium:
+            MediumWidgetView(habits: entry.habits)
+        default:
+            SmallWidgetView(habits: entry.habits)
         }
     }
 }
