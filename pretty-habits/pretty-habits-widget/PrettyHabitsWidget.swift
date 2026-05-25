@@ -15,9 +15,9 @@ struct HabitEntry: TimelineEntry {
 struct HabitProvider: TimelineProvider {
     func placeholder(in context: Context) -> HabitEntry {
         HabitEntry(date: Date(), habits: [
-            SharedHabit(id: UUID(), habitName: "Habit 1", colorHex: "FF6B6B", startDate: Date(), endDate: Date(), completedDates: [], targetDays: 7, sortOrder: 1),
-            SharedHabit(id: UUID(), habitName: "Habit 2", colorHex: "4ECDC4", startDate: Date(), endDate: Date(), completedDates: [], targetDays: 7, sortOrder: 2),
-            SharedHabit(id: UUID(), habitName: "Habit 3", colorHex: "FFD93D", startDate: Date(), endDate: Date(), completedDates: [], targetDays: 7, sortOrder: 3),
+            SharedHabit(id: UUID(), habitName: "Habit 1", colorHex: "FF6B6B", startDate: Date(timeIntervalSince1970: 1777634707), endDate: Date(timeIntervalSince1970: 1780226707), completedDates: [Date(timeIntervalSince1970: 1779276307)], targetDays: 1, sortOrder: 1),
+            SharedHabit(id: UUID(), habitName: "Habit 2", colorHex: "4ECDC4", startDate: Date(timeIntervalSince1970: 1777634707), endDate: Date(timeIntervalSince1970: 1780226707), completedDates: [Date(timeIntervalSince1970: 1779276307), Date(timeIntervalSince1970: 1779362707)], targetDays: 2, sortOrder: 2),
+            SharedHabit(id: UUID(), habitName: "Habit 3", colorHex: "FFD93D", startDate: Date(timeIntervalSince1970: 1777634707), endDate: Date(timeIntervalSince1970: 1780226707), completedDates: [Date(timeIntervalSince1970: 1779276307), Date(timeIntervalSince1970: 1779362707), Date(timeIntervalSince1970: 1779449107)], targetDays: 3, sortOrder: 3),
         ])
     }
 
