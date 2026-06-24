@@ -10,14 +10,14 @@
 - [X] Grey out 'expired habits' to indicate they can be archived
 - [X] Support deletion of habits
 - [X] iOS home screen widget
-- [ ] Support retrospective logging/unlogging of habits
+- [X] Support retrospective logging/unlogging of habits
 - [X] (Edge case) If the user edits the start / end beyond what they have already logged for the habit, warn them that the logged dates will be deleted.
+- [ ] Delete confirmation to prevent accidental deletion
 
 ### Functional nice-to-haves (P1)
 
 - [ ] Overall stats (average habit completion rate)
 - [ ] Habit archive view with the overall stats
-- [ ] Delete confirmation to prevent accidental deletion
 - [ ] Refactor the code so we don't have to duplicate shared code between widget and app (shared group/target)
 
 ### Stylistic (P1)
@@ -25,3 +25,7 @@
 - [ ] Support reordering of habits by long press and drag. The rings should animate reorder as well
 - [ ] Support more colours, with custom colour picker.
 - [X] App logo
+
+### Bugs
+
+- [ ] In edit mode, user should not be able to mark done/undone for habits.
