@@ -14,6 +14,8 @@ struct EditHabitView: View {
     @State private var endDate: Date
     @State private var selectedColorHex: String
     @State private var targetDays: Int
+    @State private var showCalendar = false
+    @State private var editableCompletedDates: [Date]
 
     @State private var errorMessage: String = ""
     @State private var showError = false
@@ -26,6 +28,7 @@ struct EditHabitView: View {
         _endDate = State(initialValue: habit.endDate)
         _selectedColorHex = State(initialValue: habit.colorHex)
         _targetDays = State(initialValue: habit.targetDays)
+        _editableCompletedDates = State(initialValue: habit.completedDates)
     }
 
     var body: some View {
@@ -95,6 +98,23 @@ struct EditHabitView: View {
                     }
                     .padding(.vertical, 4)
                 }
+                
+                Section("Edit completed Days") {
+                    Button {
+                        showCalendar = true
+                    } label: {
+                        HStack {
+                            Text("Edit completed days")
+                            Spacer()
+                            Text("\(editableCompletedDates.count) logged")
+                                .foregroundStyle(.secondary)
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.secondary)
+                                .font(.caption)
+                        }
+                    }
+                    .foregroundStyle(.primary)
+                }
 
                 // Warn user if date changes will drop completed dates
                 if hasOutOfRangeCompletions {
@@ -124,6 +144,13 @@ struct EditHabitView: View {
             } message: {
                 Text(errorMessage)
             }
+            .sheet(isPresented: $showCalendar) {
+                EditHabitCalendarSheet(
+                    startDate: startDate,
+                    endDate: endDate,
+                    completedDates: $editableCompletedDates
+                )
+            }
         }
     }
 
@@ -150,8 +177,9 @@ struct EditHabitView: View {
         habit.colorHex = selectedColorHex
         habit.targetDays = targetDays
 
-        // Strip completed dates that fall outside the new range
-        habit.completedDates = habit.completedDates.filter { date in
+        // Strip completed dates that fall outside the new range, and use the new dates selected
+        // in the EditHabitCalendarSheet.
+        habit.completedDates = editableCompletedDates.filter { date in
             date >= startDate && date <= endDate
         }
 
