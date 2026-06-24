@@ -12,6 +12,8 @@ Choose how many times you expect a habit to be done over the period of time - no
 
 <img src="./screenshots/adder.png" alt="Habit adder." width="200"/>
 
+<img src="./screenshots/edit_logged_habits.png" alt="Edit logged habits" width="200">
+
 <img src="./screenshots/part_done.png" alt="Partly done." width="200"/>
 
-<img src="./screenshots/empty.png" alt="drawing" width="200"/>
+<img src="./screenshots/empty.png" alt="Empty" width="200"/>
