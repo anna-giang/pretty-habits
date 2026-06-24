@@ -68,6 +68,7 @@ struct ContentView: View {
             .sheet(isPresented: $showAddSheet) {
                 AddHabitView(habitCount: orderedHabits.count) { newHabit in
                     modelContext.insert(newHabit)
+                    syncToWidget()
                 }
             }
             // ── Edit habit sheet ────────────────────────────────────────────
