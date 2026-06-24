@@ -11,7 +11,7 @@
 - [X] Support deletion of habits
 - [X] iOS home screen widget
 - [ ] Support retrospective logging/unlogging of habits
-- [ ] (Edge case) If the user edits the start / end beyond what they have already logged for the habit, warn them that the logged dates will be deleted.
+- [X] (Edge case) If the user edits the start / end beyond what they have already logged for the habit, warn them that the logged dates will be deleted.
 
 ### Functional nice-to-haves (P1)
 

@@ -64,6 +64,18 @@ struct EditHabitView: View {
                         targetDays = min(targetDays, maxTarget)
                     }
                 }
+                
+                // Warn user if the date changes will drop completed dates
+                if hasOutOfRangeCompletions {
+                    Section {
+                        Label(
+                            "Some completed dates fall outside the new date range and will be removed on save.",
+                            systemImage: "exclamationmark.triangle"
+                        )
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                    }
+                }
 
                 Section("Target") {
                     if maxTarget < 1 {
@@ -114,18 +126,6 @@ struct EditHabitView: View {
                         }
                     }
                     .foregroundStyle(.primary)
-                }
-
-                // Warn user if date changes will drop completed dates
-                if hasOutOfRangeCompletions {
-                    Section {
-                        Label(
-                            "Some completed dates fall outside the new date range and will be removed on save.",
-                            systemImage: "exclamationmark.triangle"
-                        )
-                        .font(.caption)
-                        .foregroundStyle(.orange)
-                    }
                 }
             }
             .navigationTitle("Edit Habit")
