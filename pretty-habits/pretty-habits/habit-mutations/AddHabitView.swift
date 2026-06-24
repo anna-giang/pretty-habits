@@ -15,7 +15,7 @@ struct AddHabitView: View {
     @State private var endDate: Date =
         Calendar.current.date(byAdding: .month, value: 1, to: Date()) ?? Date()
     @State private var selectedColorHex: String = "FF6B6B"
-    @State private var targetDays: Int = 0
+    @State private var targetDays: Int = 1
 
     var body: some View {
         NavigationStack {
